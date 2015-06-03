@@ -1,0 +1,51 @@
+#!/bin/bash
+
+PROCCOUNT=$(ps -Afl | wc -l)
+PROCCOUNT=$(expr $PROCCOUNT - 5)
+ENDSESSION="Unlimited"
+PRIVLAGED="Regular User"
+GROUPZ=$(groups)
+
+let upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
+let secs=$((${upSeconds}%60))
+let mins=$((${upSeconds}/60%60))
+let hours=$((${upSeconds}/3600%24))
+let days=$((${upSeconds}/86400))
+UPTIME=`printf "%d days, %02dh%02dm%02ds" "$days" "$hours" "$mins" "$secs"`
+
+# Color
+BASE03=$(tput setaf 234)
+BASE02=$(tput setaf 235)
+BASE01=$(tput setaf 240)
+BASE00=$(tput setaf 241)
+BASE0=$(tput setaf 244)
+BASE1=$(tput setaf 245)
+BASE2=$(tput setaf 254)
+BASE3=$(tput setaf 230)
+YELLOW=$(tput setaf 136)
+ORANGE=$(tput setaf 166)
+RED=$(tput setaf 160)
+MAGENTA=$(tput setaf 125)
+VIOLET=$(tput setaf 61)
+BLUE=$(tput setaf 33)
+CYAN=$(tput setaf 37)
+GREEN=$(tput setaf 64)
+
+echo -e "
+${MAGENTA}+++++++++++++++++: ${ORANGE}System Data${MAGENTA} :+++++++++++++++++++
++  ${GREEN}Hostname ${BASE00}= ${YELLOW}$(hostname)
+${MAGENTA}+   ${GREEN}Address ${BASE00}= ${YELLOW}$(hostname -i)
+${MAGENTA}+    ${GREEN}Kernel ${BASE00}= ${YELLOW}$(uname -r)
+${MAGENTA}+    ${GREEN}Debian ${BASE00}= ${YELLOW}$(cat /etc/debian_version)
+${MAGENTA}+    ${GREEN}Uptime ${BASE00}= ${YELLOW}$(echo ${UPTIME})
+${MAGENTA}+      ${GREEN}Load ${BASE00}= ${YELLOW}$(cat /proc/loadavg)
+${MAGENTA}+    ${GREEN}Memory ${BASE00}= ${YELLOW}$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')
+${MAGENTA}+    ${GREEN}Disk / ${BASE00}= ${YELLOW}$(df -h / | awk 'NR==2 { printf "Total: %sB, Used: %sB, Free: %sB",$2,$3,$4; }')
+${MAGENTA}+     ${GREEN}/Home ${BASE00}= ${YELLOW}$(df -h /home/ | awk 'NR==2 { printf "Total: %sB, Used: %sB, Free: %sB",$2,$3,$4; }')
+${MAGENTA}++++++++++++++++++: ${ORANGE}User Data${MAGENTA} :++++++++++++++++++++
++  ${GREEN}Username ${BASE00}= ${YELLOW}$(whoami)
+${MAGENTA}+    ${GREEN}Groups ${BASE00}= ${YELLOW}$GROUPZ
+${MAGENTA}+  ${GREEN}Sessions ${BASE00}= ${YELLOW}$(who | grep $USER | wc -l) of $ENDSESSION
+${MAGENTA}+ ${GREEN}Processes ${BASE00}= ${YELLOW}$PROCCOUNT of $(ulimit -u)
+${MAGENTA}+++++++++++++++++++++++++++++++++++++++++++++++++++
+"
