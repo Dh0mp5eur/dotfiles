@@ -1,0 +1,6 @@
+"\e[1;5B": forward-word
+"\e[1;5A": backward-word
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set show-all-if-ambiguous on
+set completion-ignore-case on

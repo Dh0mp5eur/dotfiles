@@ -1,0 +1,14 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[user]
+	name = Dh0mp5eur
+	email = dhomps.florian@gmail.com
+[alias]
+	co = commit
+	cl = clone
+	ck = checkout
+	st = status
+	br = branch
+	brt = branch --track
