@@ -23,6 +23,10 @@ def vim():
     rsync_project(local_dir="vimrc.before",remote_dir="~/.vimrc.before",delete=True)
     rsync_project(local_dir="vimrc.after",remote_dir="~/.vimrc.after",delete=True)
 
+def yakuake():
+    sudo("aptitude install yakuake")
+    rsync_project(local_dir="yakuakerc",remote_dir="~/.kde/share/config/yakuakerc",delete=True)
+
 def env():
     rsync_project(local_dir="bashrc",remote_dir="~/.bashrc",delete=True)
     rsync_project(local_dir="inputrc",remote_dir="~/.inputrc",delete=True)

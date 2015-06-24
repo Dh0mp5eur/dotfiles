@@ -1,0 +1,48 @@
+[$Version]
+update_info=yakuake.upd:2.9.9-startupnotification
+
+[Appearance]
+BackgroundColor=195,195,195
+BackgroundColorOpacity=20
+Skin=ethais
+SkinInstalledWithKns=true
+
+[Colors]
+CurrentPalette=Forty Colors
+
+[Desktop Entry]
+DefaultProfile=Shell.profile
+
+[Dialogs]
+FirstRun=false
+
+[DownloadDialog Settings]
+Height 1050=400
+Width 1680=700
+
+[Favorite Profiles]
+Favorites=
+
+[Shortcuts]
+decrease-window-width=none
+grow-terminal-bottom=Ctrl+Shift+Down
+grow-terminal-left=Ctrl+Shift+Left
+grow-terminal-right=Ctrl+Shift+Right
+grow-terminal-top=Ctrl+Shift+Up
+increase-window-width=none
+move-session-left=Alt+Shift+Left
+move-session-right=Alt+Shift+Right
+new-session-quad=Ctrl+4
+new-session-two-horizontal=Ctrl+3
+new-session-two-vertical=Ctrl+2
+next-session=Ctrl+Tab
+next-terminal=Ctrl+Right
+previous-session=Ctrl+Shift+Tab
+previous-terminal=Ctrl+Left
+rename-session=F2
+split-left-right=Ctrl+G
+split-top-bottom=Ctrl+H
+view-full-screen=F11
+
+[Window]
+Width=100
