@@ -33,8 +33,9 @@ def env():
 def env_srv():
     rsync_project(local_dir="bashrc",remote_dir="~/.bashrc",delete=True)
     rsync_project(local_dir="inputrc",remote_dir="~/.inputrc",delete=True)
-    rsync_project(local_dir="gitconfig",remote_dir="~/.gitconfig",delete=True)
     rsync_project(local_dir="motd",remote_dir="~/.motd",delete=True)
+    rsync_project(local_dir="gitconfig",remote_dir="~/.gitconfig",delete=True)
+    rsync_project(local_dir="htoprc",remote_dir="~/.htoprc",delete=True)
     sed('~/.bashrc','$BLUE','$RED',backup='')
     sed('~/.bashrc','\$\{GREEN\}','${MAGENTA}',backup='')
 
@@ -46,8 +47,8 @@ def setup():
     execute(vim)
 
 def setup_srv():
-    #execute(update)
-    #execute(upgrade)
+    execute(update)
+    execute(upgrade)
     execute(package)
     execute(env_srv)
     execute(vim)
