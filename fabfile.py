@@ -15,7 +15,7 @@ def upgrade():
     sudo("aptitude upgrade")
 
 def package():
-    sudo('aptitude install htop vim most screen rsync git curl sudo')
+    sudo('aptitude install htop vim most screen rsync git curl')
 
 def vim():
     sudo("aptitude install vim ack exuberant-ctags git ruby rake")
@@ -26,6 +26,8 @@ def vim():
 def yakuake():
     sudo("aptitude install yakuake")
     rsync_project(local_dir="yakuakerc",remote_dir="~/.kde/share/config/yakuakerc",delete=True)
+    rsync_project(local_dir="yakuake.desktop",remote_dir="~/.config/autostart/yakuake.desktop",delete=True)
+    sed('~/.kde/share/apps/konsole/Shell.profile','xterm$','xterm-256color',backup='')
 
 def env():
     rsync_project(local_dir="bashrc",remote_dir="~/.bashrc",delete=True)
