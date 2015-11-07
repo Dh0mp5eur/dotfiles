@@ -23,11 +23,18 @@ def vim():
     rsync_project(local_dir="vimrc.before",remote_dir="~/.vimrc.before",delete=True)
     rsync_project(local_dir="vimrc.after",remote_dir="~/.vimrc.after",delete=True)
 
+def ohmyzsh():
+    run('sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
+    rsync_project(local_dir="zshrc",remote_dir="~/.zshrc",delete=False)
+    rsync_project(local_dir="ipod.zsh",remote_dir="~/.oh-my-zsh/custom/",delete=False)
+    rsync_project(local_dir="ipygmalion.zsh-theme",remote_dir="~/.oh-my-zsh/custom/",delete=False)
+
 def yakuake():
     sudo("aptitude install yakuake")
-    rsync_project(local_dir="yakuakerc",remote_dir="~/.kde/share/config/yakuakerc",delete=True)
-    rsync_project(local_dir="yakuake.desktop",remote_dir="~/.config/autostart/yakuake.desktop",delete=True)
-    sed('~/.kde/share/apps/konsole/Shell.profile','xterm$','xterm-256color',backup='')
+    rsync_project(local_dir="yakuakerc",remote_dir="~/.kde/share/config/yakuakerc",delete=False)
+    run('mkdir -p ~/.config/autostart')
+    rsync_project(local_dir="yakuake.desktop",remote_dir="~/.config/autostart/yakuake.desktop",delete=False)
+    rsync_project(local_dir="Shell.profile",remote_dir=".kde/share/apps/konsole/Shell.profile",delete=False)
 
 def env():
     rsync_project(local_dir="bashrc",remote_dir="~/.bashrc",delete=True)
@@ -51,6 +58,7 @@ def setup():
     execute(package)
     execute(env)
     execute(vim)
+    execute(ohmyzsh)
 
 def setup_srv():
     execute(update)
